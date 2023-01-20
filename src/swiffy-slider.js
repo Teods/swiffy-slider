@@ -10,7 +10,7 @@ const swiffyslider = function() {
                 navElement.addEventListener("click", () => this.slide(sliderElement, navElement.classList.contains("slider-nav-next")), { passive: true })
             );
             sliderElement.querySelectorAll(".slider-indicators").forEach((indicatorElement) => {
-                indicatorElement.addEventListener("click", () => this.slideToByIndicator());
+                indicatorElement.addEventListener("click", (e) => this.slideToByIndicator(e));
                 this.onSlideEnd(sliderElement, () => this.handleIndicators(sliderElement), 60);
             });
             if (sliderElement.classList.contains("slider-nav-autoplay")) {
@@ -63,8 +63,8 @@ const swiffyslider = function() {
             });
         },
 
-        slideToByIndicator() {
-            const indicator = window.event.target;
+        slideToByIndicator(event) {
+            const indicator = event.target.closest('.slider-indicator') ?? event.target;
             const indicatorIndex = this.getIndicators(indicator.parentElement).indexOf(indicator);
             const indicatorCount = this.getIndicators(indicator.parentElement).length;
             const sliderElement = indicator.closest(".swiffy-slider");
