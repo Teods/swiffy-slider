@@ -55,7 +55,7 @@ const swiffyslider = function() {
             }
             if (container.scrollLeft < 1 && !next && !noloop)
                 scrollLeftPosition = (container.scrollWidth - container.offsetWidth);
-            if (container.scrollLeft >= (container.scrollWidth - container.offsetWidth) && next && !noloop)
+            if (Math.ceil(container.scrollLeft) >= (container.scrollWidth - container.offsetWidth) && next && !noloop)
                 scrollLeftPosition = 0;
             container.scroll({
                 left: scrollLeftPosition,
